@@ -1,5 +1,6 @@
+
 {
-  "name": "my-portfolio",
+  "name": "testgithubj/talal-portfolio",
   "description": "A personal portfolio website to showcase my work and projects.",
   "require": {
     "php": "^7.4 || ^8.0",
