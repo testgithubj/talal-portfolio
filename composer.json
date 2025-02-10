@@ -1,12 +1,11 @@
-{
-  {
-  "name": "my-portfolio", 
+
+ {
+  "name": "my-portfolio",
   "description": "A personal portfolio website to showcase my work and projects.",
   "require": {
     "php": "^7.4 || ^8.0",
     "some/package": "1.0.*"
   }
 }
+ 
 
-  }
-}
