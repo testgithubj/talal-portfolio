@@ -1,6 +1,5 @@
 {
-  {
-  "name": "my-portfolio", 
+  "name": "your-username/portfolio",
   "description": "A personal portfolio website to showcase my work and projects.",
   "require": {
     "php": "^7.4 || ^8.0",
@@ -8,5 +7,3 @@
   }
 }
 
-  }
-}
