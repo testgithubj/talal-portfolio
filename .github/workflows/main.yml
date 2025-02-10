@@ -9,10 +9,8 @@ on:
       - main
 
 jobs:
-  # test job has been removed
-  deploy:
+  test:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
 
     steps:
       - name: Checkout Code
@@ -28,12 +26,21 @@ jobs:
         run: |
           composer install --no-dev --prefer-dist
 
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
       - name: Deploy to EC2
         uses: appleboy/ssh-action@master
         with:
-          host: 13.233.143.198         
-          username: ec2-user          
-          key: ${{ secrets.AWS_SSH_PRIVATE_KEY }}  
+          host: 13.233.143.198  # Your EC2 instance's public IP address
+          username: ec2-user     # Your EC2 username
+          key: ${{ secrets.AWS_SSH_PRIVATE_KEY }}  # Reference the private key secret
           script: |
             # Deploying to EC2
             cd /var/www/shodei
@@ -43,4 +50,3 @@ jobs:
             php artisan config:clear
             php artisan cache:clear
             sudo systemctl restart nginx php8.1-fpm
-
